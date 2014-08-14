@@ -1,0 +1,119 @@
+
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	background-color:#fff;
+	color:#000;
+	font-family:Arial,Helvetica,sans-serif;
+}
+
+
+/* Pagination Controls */
+
+#pagination_controls {
+    width:600px;
+	height:20px;
+	margin:0px 0px 5px 10px;
+}
+
+#pagination_control_wrapper {}
+
+#pagination_control_wrapper ul{
+	float:right;
+ 	list-style:none;
+ 	font-size:0.75em;
+	
+}
+#pagination_control_wrapper ul li {
+	float:left;
+	text-align:center;
+}
+#pagination_control_wrapper ul li a {
+	display:block;
+	height:100%;
+	color:#000;
+	text-decoration:none;
+	padding:3px 3px 2px;
+	color:#143e7d;
+	cursor:pointer;
+	
+}
+#pagination_control_wrapper ul li a:hover { 
+	background-color:#143e7d;
+	border-bottom:1px solid #143e7d;
+	color:#fff;
+	text-decoration:none 
+}
+#pagination_control_wrapper ul li.current a:hover {
+	color:#fff;
+}
+#pagination_control_wrapper ul li.current a {
+	border-bottom:2px solid #143e7d;
+	border-color:#143e7d;
+	color:#143e7d;
+	font-weight:bold;
+	padding-left:2px;
+	padding-right:2px;
+}
+
+
+
+
+/* Pagination Elements */
+
+#pagination_container {
+	width:410px;
+	height:300px;
+	overflow:hidden;
+	margin:0px 0px 0px 10px;
+	border:1px dashed gray;
+}
+#pagination_content_wrapper {
+	/* This is important for animation */
+	position:relative;
+}
+#pagination_content_wrapper .paginated {
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+/**/
+.paginated {
+	width:410px;
+	height:300px;
+}
+.paginated ul {
+	list-style:none;
+}
+.paginated ul li {
+	float:left;
+	width:100px;
+	height:80px;
+	text-align:center;
+	border:1px solid green;
+}
+
+
+/**/
+h1 { 
+	font-size:1em; 
+	padding:10px 0px 30px 10px;
+}
+.points {
+	font-size:12px;
+	margin:20px 0px 0px 10px;
+}
+.points strong {
+	display:block;
+	margin:50px 0px 10px 0px;
+}
+.points ul {
+	
+}
+.points ul li {
+	margin:0px 0px 5px 20px;
+}
+

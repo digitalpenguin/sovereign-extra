@@ -1,0 +1,145 @@
+/* 
+jQuery Ajax Paginator
+Author : Simon Ilett
+Version 1.22
+ 
+*/
+
+/*
+v1.22 changes
+
+defaults.xString 
+Allows you to pass extra params through the ajax query at anytime.
+*/
+
+function Paginator (url, options) {
+	
+	// Becomes this.options
+	var defaults = {
+		xParams : {},
+		qString : '?p=',
+		items:10,
+		controls: 'pagination_control_wrapper',
+		content: 'pagination_content_wrapper',
+		cache: false,
+		duration: 800,
+		timer: 500
+	}
+	
+	this.options 	= jQuery.extend(defaults, options);
+	
+	this.init = function() {
+		this.pControls = $('#'+this.options.controls);
+		this.pContent 	= $('#'+this.options.content);
+		this.newRequest = true;	
+		this.lastHash 	= false;
+		this.lastPage	= 1;
+		if (this.options.cache) 
+			this.cache 	= $empty;
+		// Check Hash
+		this.isHashed();
+		// Set pagination click events 	
+		if(this.pControls) 
+			this.paginationEvents();
+    };
+	
+	this.paginationEvents = function() {	
+		var obj = this;
+		this.pControls.click(function(e) {
+			e.preventDefault();
+			obj.loadPage(e.target);
+		});
+	};
+	
+	// Initial load check for a hash to load.
+	this.isHashed = function() {	
+		this.loadHash(this.stripHash());
+		var obj = this;
+		setInterval(function () { obj.hashPage(); }, this.options.timer);
+	};
+	
+	// Periodical check for a new hash value to simulate back button ajax action
+	this.hashPage = function() {
+		var hash = this.stripHash();
+		if(this.lastHash && this.lastHash!=hash) {
+			this.loadHash(hash);	
+		}
+	};
+	
+	this.loadPage = function(el) {
+		var tmpURL = (typeof(el)=='object' ? el.href : el),
+		dataArray = this.splitURL(tmpURL),
+		hash = dataArray[1];
+		if (this.lastHash && this.lastHash == hash) return;
+		if (this.newRequest) {
+			this.newRequest = false;
+			this.lastHash = window.location.hash = hash;
+			this.getData(tmpURL);
+		}
+	};
+	
+	this.getData = function(url) {
+		var obj = this;
+		var theCallback = function (response) {
+			obj.newPagination(response);
+		}; 
+		var params =  jQuery.extend({ 'items' : this.options.items, 'current' : this.lastPage, 'qString' : this.options.qString}, this.options.xParams);
+		$.getJSON(url, params, theCallback);
+		
+	};
+	
+	this.newPagination = function(res) {
+		this.newRequest = true;
+		this.pControls.html(res.pagination);
+		// Prevents the append bug when multiple requests are fired.
+		this.pContent.html('<div style="position:relative;">' + this.pContent.html() + '</div>' + res.page);
+		
+		var first = this.pContent.find("div:first"),
+		last = this.pContent.find("div:last");
+	
+		// The previous node (old page) is moving either shift left = -750, shift right = 750;
+		if (first[0]!=last[0]) {
+			var firstLeft = this.convert(last.css("left").replace('px',''));
+			first.animate({'left':firstLeft, opacity:0}, this.options.duration, function() {
+				first.remove();
+			});
+		}
+		last.animate({'left':'0'}, this.options.duration);
+		
+		this.lastPage = res.current;
+	};
+
+	/* Loaders */
+	
+	// Load a page number 1,2,3 or next, prev, last, first
+	this.pLoad = function (n) {
+		this.loadPage($('#page_'+n).attr('href'));
+	};
+	// Load a page by full URL, if known
+	this.hLoad = function (n) {
+		this.loadPage(this.pUrl + this.options.qString + n);
+	};
+	// Load the current hashed page
+	this.loadHash = function (hash) {
+		if (hash) 
+			this.loadPage(this.pUrl + '?' + hash);	
+		else 
+			this.hLoad('1');
+	};
+	
+	/* Helpers */
+	this.splitURL = function(o) {
+		return o.split('?');
+	};
+	this.stripHash = function() {
+		return window.location.hash.replace('#','');
+	};
+	this.convert = function(n) {
+		return n*-1;
+	};
+	
+    this.pUrl 		= url;
+    this.init();
+}
+
+

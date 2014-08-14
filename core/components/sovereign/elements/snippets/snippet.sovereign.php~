@@ -1,0 +1,12 @@
+<?php
+$sovereign = $modx->getService('sovereign','Sovereign',$modx->getOption('sovereign.core_path',null,$modx->getOption('core_path').'components/sovereign/').'model/sovereign/',$scriptProperties);
+if (!($sovereign instanceof Doodles)) return '';
+
+/* setup default properties */
+$tpl = $modx->getOption('tpl',$scriptProperties,'rowTpl');
+$sort = $modx->getOption('sort',$scriptProperties,'name');
+$dir = $modx->getOption('dir',$scriptProperties,'ASC');
+
+$output = '';
+
+return $output;

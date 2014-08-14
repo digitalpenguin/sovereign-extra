@@ -1,0 +1,21 @@
+<?php
+
+$_lang['sovereign'] = 'Sovereign';
+$_lang['sovereign.desc'] = 'Manage the art prize competitions here.';
+$_lang['sovereign.description'] = 'Description';
+$_lang['sovereign.sovereign_err_ae'] = 'A artwork with that name already exists.';
+$_lang['sovereign.sovereign_err_nf'] = 'Artwork not found.';
+$_lang['sovereign.sovereign_err_ns'] = 'Artwork not specified.';
+$_lang['sovereign.sovereign_err_ns_name'] = 'Please specify a name for the artwork.';
+$_lang['sovereign.sovereign_err_remove'] = 'An error occurred while trying to remove the artwork.';
+$_lang['sovereign.sovereign_err_save'] = 'An error occurred while trying to save the artwork.';
+$_lang['sovereign.sovereign_create'] = 'Add New Artwork';
+$_lang['sovereign.sovereign_remove'] = 'Remove Artwork';
+$_lang['sovereign.sovereign_remove_confirm'] = 'Are you sure you want to remove this artwork?';
+$_lang['sovereign.sovereign_update'] = 'Update Artwork';
+$_lang['sovereign.downloads'] = 'Downloads';
+$_lang['sovereign.location'] = 'Location';
+$_lang['sovereign.management'] = 'Art Prize Management';
+$_lang['sovereign.management_desc'] = 'Manage the art prize competitions here. You can edit them by either double-clicking on the grid or right-clicking on the respective row.';
+$_lang['sovereign.name'] = 'Name';
+$_lang['sovereign.search...'] = 'Search...';

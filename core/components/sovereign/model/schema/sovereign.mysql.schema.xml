@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="sovereign" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
+
+    <!-- African Art Prize -->
+    <object class="africanArtworks" table="sovereign_african_artworks" extends="xPDOSimpleObject">
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="sid" dbtype="int" precision="11" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="lot_num" dbtype="int" precision="11" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="title" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="first_name" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="surname" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_1" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_2" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_3" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="city" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="state" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="postal_code" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="country" dbtype="varchar" precision="45" phptype="string" null="true" default="" />
+        <field key="tel_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="mob_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="fax_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="email_address" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="dob" dbtype="date" phptype="string" null="true" />
+        <field key="nom_name" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="statement" dbtype="text" phptype="string" />
+        <field key="art_title" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="art_materials" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="height" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="width" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="depth" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="value" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="work_brief" dbtype="text" phptype="string" />
+        <field key="art_brief" dbtype="text" phptype="string" />
+        <field key="donate" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="share" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="filename" dbtype="varchar" precision="50" phptype="string" null="true" default="" />
+        <field key="gallery_type" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="caption" dbtype="text" phptype="string" />
+        <field key="edition" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="img_height" dbtype="varchar" precision="30" phptype="string" null="true" default="" />
+        <field key="img_width" dbtype="varchar" precision="30" phptype="string" null="true" />
+        <field key="winner" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="confirmed" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="createdby" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <aggregate alias="AfricanGallery" class="africanGalleries" local="gallery_id" foreign="id" cardinality="one" owner="foreign" />
+        <composite alias="AfricanVote" class="africanVotes" local="id" foreign="artwork_id" cardinality="many" owner="local" />
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign" />
+        <index alias="gallery_id" name="gallery_id" primary="false" unique="false" type="BTREE" >
+            <column key="gallery_id" length="" collation="A" null="false" />
+        </index>
+    </object>
+
+    <object class="africanGalleries" table="sovereign_african_galleries" extends="xPDOSimpleObject">
+        <field key="galleryname" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="description" dbtype="text" phptype="string" />
+        <field key="artworktotal" dbtype="int" precision="10" phptype="integer" null="true" default="0" />
+        <field key="url" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="enabled" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="public_voting" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="phase" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="type" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="cover_filename" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="vote_on" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="" />
+        <field key="votes" dbtype="int" precision="10" phptype="integer" null="true" default="0" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="createdby" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <composite alias="AfricanArtworks" class="africanArtworks" local="id" foreign="gallery_id" cardinality="many" owner="local" />
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="africanJudges" table="sovereign_african_judges" extends="xPDOSimpleObject">
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="fullname" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="email" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="country" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="position" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="organisation" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="biography" dbtype="text" phptype="string" />
+        <field key="filename" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <aggregate alias="AfricanGallery" class="africanGalleries" local="gallery_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="africanVotes" table="sovereign_african_votes" extends="xPDOSimpleObject">
+        <field key="artwork_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" />
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" />
+        <field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" />
+        <field key="value_judges" dbtype="decimal" precision="2,1" phptype="float" attributes="unsigned" null="false" />
+        <field key="value_public" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="false" />
+        <field key="ip" dbtype="varchar" precision="255" phptype="string" null="true" />
+        <field key="date" dbtype="int" precision="11" attributes="unsigned" phptype="integer" null="false" />
+        <aggregate alias="AfricanArtwork" class="africanArtworks" local="artwork_id" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="User" class="modUser" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+        <index alias="ip" name="ip" primary="false" unique="false" type="BTREE" >
+            <column key="ip" length="" collation="A" null="false" />
+        </index>
+        <index alias="artwork_id" name="artwork_id" primary="false" unique="false" type="BTREE" >
+            <column key="artwork_id" length="" collation="A" null="false" />
+        </index>
+        <index alias="user_id" name="user_id" primary="false" unique="false" type="BTREE" >
+            <column key="user_id" length="" collation="A" null="false" />
+        </index>
+    </object>
+
+    <object class="africanNominators" table="sovereign_african_nominators" extends="xPDOSimpleObject">
+        <field key="fullname" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="filename" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="position" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="organisation" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="biography" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="email" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+    </object>
+
+    
+    
+    <!-- Asian Art Prize -->
+    <object class="asianArtworks" table="sovereign_asian_artworks" extends="xPDOSimpleObject">
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="sid" dbtype="int" precision="11" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="lot_num" dbtype="int" precision="11" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="title" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="first_name" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="surname" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_1" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_2" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_3" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="city" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="state" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="postal_code" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="country" dbtype="varchar" precision="45" phptype="string" null="true" default="" />
+        <field key="tel_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="mob_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="fax_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="email_address" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="dob" dbtype="date" phptype="string" null="true" />
+        <field key="nom_name" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="statement" dbtype="text" phptype="string" />
+        <field key="art_title" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="art_materials" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="height" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="width" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="depth" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="value" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="work_brief" dbtype="text" phptype="string" />
+        <field key="art_brief" dbtype="text" phptype="string" />
+        <field key="donate" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="share" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="filename" dbtype="varchar" precision="50" phptype="string" null="true" default="" />
+        <field key="gallery_type" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="caption" dbtype="text" phptype="string" />
+        <field key="edition" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="img_height" dbtype="varchar" precision="30" phptype="string" null="true" default="" />
+        <field key="img_width" dbtype="varchar" precision="30" phptype="string" null="true" />
+        <field key="winner" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="confirmed" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="createdby" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <aggregate alias="AsianGallery" class="asianGalleries" local="gallery_id" foreign="id" cardinality="one" owner="foreign" />
+        <composite alias="AsianVote" class="asianVotes" local="id" foreign="artwork_id" cardinality="many" owner="local" />
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign" />
+        <index alias="gallery_id" name="gallery_id" primary="false" unique="false" type="BTREE" >
+            <column key="gallery_id" length="" collation="A" null="false" />
+        </index>
+    </object>
+
+    <object class="asianGalleries" table="sovereign_asian_galleries" extends="xPDOSimpleObject">
+        <field key="galleryname" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="description" dbtype="text" phptype="string" />
+        <field key="artworktotal" dbtype="int" precision="10" phptype="integer" null="true" default="0" />
+        <field key="url" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="enabled" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="public_voting" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="phase" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="type" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="cover_filename" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="vote_on" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="" />
+        <field key="votes" dbtype="int" precision="10" phptype="integer" null="true" default="0" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="createdby" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <composite alias="AsianArtworks" class="asianArtworks" local="id" foreign="gallery_id" cardinality="many" owner="local" />
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="asianJudges" table="sovereign_asian_judges" extends="xPDOSimpleObject">
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="fullname" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="email" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="country" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="position" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="organisation" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="biography" dbtype="text" phptype="string" />
+        <field key="filename" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <aggregate alias="AsianGallery" class="asianGalleries" local="gallery_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="asianVotes" table="sovereign_asian_votes" extends="xPDOSimpleObject">
+        <field key="artwork_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" />
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" />
+        <field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" />
+        <field key="value_judges" dbtype="decimal" precision="2,1" phptype="float" attributes="unsigned" null="false" />
+        <field key="value_public" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="false" />
+        <field key="ip" dbtype="varchar" precision="255" phptype="string" null="true" />
+        <field key="date" dbtype="int" precision="11" attributes="unsigned" phptype="integer" null="false" />
+        <aggregate alias="AsianArtwork" class="asianArtworks" local="artwork_id" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="User" class="modUser" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+        <index alias="ip" name="ip" primary="false" unique="false" type="BTREE" >
+            <column key="ip" length="" collation="A" null="false" />
+        </index>
+        <index alias="artwork_id" name="artwork_id" primary="false" unique="false" type="BTREE" >
+            <column key="artwork_id" length="" collation="A" null="false" />
+        </index>
+        <index alias="user_id" name="user_id" primary="false" unique="false" type="BTREE" >
+            <column key="user_id" length="" collation="A" null="false" />
+        </index>
+    </object>
+
+    <object class="asianNominators" table="sovereign_asian_nominators" extends="xPDOSimpleObject">
+        <field key="fullname" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="filename" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="position" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="organisation" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="biography" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="email" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+    </object>
+    
+    
+    <!-- European Art Prize -->
+    <object class="europeanArtworks" table="sovereign_european_artworks" extends="xPDOSimpleObject">
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="sid" dbtype="int" precision="11" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="lot_num" dbtype="int" precision="11" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="title" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="first_name" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="surname" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_1" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_2" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_3" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="city" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="state" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="postal_code" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="country" dbtype="varchar" precision="45" phptype="string" null="true" default="" />
+        <field key="tel_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="mob_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="fax_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="email_address" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="dob" dbtype="date" phptype="string" null="true" />
+        <field key="nom_name" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="statement" dbtype="text" phptype="string" />
+        <field key="art_title" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="art_materials" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="height" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="width" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="depth" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="value" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="work_brief" dbtype="text" phptype="string" />
+        <field key="art_brief" dbtype="text" phptype="string" />
+        <field key="donate" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="share" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="filename" dbtype="varchar" precision="50" phptype="string" null="true" default="" />
+        <field key="gallery_type" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="caption" dbtype="text" phptype="string" />
+        <field key="edition" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="img_height" dbtype="varchar" precision="30" phptype="string" null="true" default="" />
+        <field key="img_width" dbtype="varchar" precision="30" phptype="string" null="true" />
+        <field key="winner" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="confirmed" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="createdby" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <aggregate alias="EuropeanGallery" class="europeanGalleries" local="gallery_id" foreign="id" cardinality="one" owner="foreign" />
+        <composite alias="EuropeanVote" class="europeanVotes" local="id" foreign="artwork_id" cardinality="many" owner="local" />
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign" />
+        <index alias="gallery_id" name="gallery_id" primary="false" unique="false" type="BTREE" >
+            <column key="gallery_id" length="" collation="A" null="false" />
+        </index>
+    </object>
+
+    <object class="europeanGalleries" table="sovereign_european_galleries" extends="xPDOSimpleObject">
+        <field key="galleryname" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="description" dbtype="text" phptype="string" />
+        <field key="artworktotal" dbtype="int" precision="10" phptype="integer" null="true" default="0" />
+        <field key="url" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="enabled" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="public_voting" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="phase" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="type" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="cover_filename" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="vote_on" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="" />
+        <field key="votes" dbtype="int" precision="10" phptype="integer" null="true" default="0" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="createdby" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <composite alias="EuropeanArtworks" class="europeanArtworks" local="id" foreign="gallery_id" cardinality="many" owner="local" />
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="europeanJudges" table="sovereign_european_judges" extends="xPDOSimpleObject">
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="fullname" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="email" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="country" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="position" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="organisation" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="biography" dbtype="text" phptype="string" />
+        <field key="filename" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <aggregate alias="EuropeanGallery" class="europeanGalleries" local="gallery_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="europeanVotes" table="sovereign_european_votes" extends="xPDOSimpleObject">
+        <field key="artwork_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" />
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" />
+        <field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" />
+        <field key="value_judges" dbtype="decimal" precision="2,1" phptype="float" attributes="unsigned" null="false" />
+        <field key="value_public" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="false" />
+        <field key="ip" dbtype="varchar" precision="255" phptype="string" null="true" />
+        <field key="date" dbtype="int" precision="11" attributes="unsigned" phptype="integer" null="false" />
+        <aggregate alias="EuropeanArtwork" class="europeanArtworks" local="artwork_id" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="User" class="modUser" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+        <index alias="ip" name="ip" primary="false" unique="false" type="BTREE" >
+            <column key="ip" length="" collation="A" null="false" />
+        </index>
+        <index alias="artwork_id" name="artwork_id" primary="false" unique="false" type="BTREE" >
+            <column key="artwork_id" length="" collation="A" null="false" />
+        </index>
+        <index alias="user_id" name="user_id" primary="false" unique="false" type="BTREE" >
+            <column key="user_id" length="" collation="A" null="false" />
+        </index>
+    </object>
+
+    <object class="europeanNominators" table="sovereign_european_nominators" extends="xPDOSimpleObject">
+        <field key="fullname" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="filename" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="position" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="organisation" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="biography" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="email" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+    </object>
+
+
+
+    <!-- Middle Eastern Art Prize -->
+    <object class="mideasternArtworks" table="sovereign_mideastern_artworks" extends="xPDOSimpleObject">
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="sid" dbtype="int" precision="11" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="lot_num" dbtype="int" precision="11" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="title" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="first_name" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="surname" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_1" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_2" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="address_3" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="city" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="state" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="postal_code" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="country" dbtype="varchar" precision="45" phptype="string" null="true" default="" />
+        <field key="tel_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="mob_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="fax_no" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="email_address" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="dob" dbtype="date" phptype="string" null="true" />
+        <field key="nom_name" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="statement" dbtype="text" phptype="string" />
+        <field key="art_title" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="art_materials" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="height" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="width" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="depth" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="value" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="work_brief" dbtype="text" phptype="string" />
+        <field key="art_brief" dbtype="text" phptype="string" />
+        <field key="donate" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="share" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="filename" dbtype="varchar" precision="50" phptype="string" null="true" default="" />
+        <field key="gallery_type" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="caption" dbtype="text" phptype="string" />
+        <field key="edition" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="img_height" dbtype="varchar" precision="30" phptype="string" null="true" default="" />
+        <field key="img_width" dbtype="varchar" precision="30" phptype="string" null="true" />
+        <field key="winner" dbtype="varchar" precision="200" phptype="string" null="true" default="" />
+        <field key="confirmed" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="createdby" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <aggregate alias="MideasternGallery" class="mideasternGalleries" local="gallery_id" foreign="id" cardinality="one" owner="foreign" />
+        <composite alias="MideasternVote" class="mideasternVotes" local="id" foreign="artwork_id" cardinality="many" owner="local" />
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign" />
+        <index alias="gallery_id" name="gallery_id" primary="false" unique="false" type="BTREE" >
+            <column key="gallery_id" length="" collation="A" null="false" />
+        </index>
+    </object>
+
+    <object class="mideasternGalleries" table="sovereign_mideastern_galleries" extends="xPDOSimpleObject">
+        <field key="galleryname" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="description" dbtype="text" phptype="string" />
+        <field key="artworktotal" dbtype="int" precision="10" phptype="integer" null="true" default="0" />
+        <field key="url" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="enabled" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="public_voting" dbtype="int" precision="1" phptype="integer" null="true" default="0" />
+        <field key="phase" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="type" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="cover_filename" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="vote_on" dbtype="int" precision="1" phptype="integer" attributes="unsigned" null="true" default="" />
+        <field key="votes" dbtype="int" precision="10" phptype="integer" null="true" default="0" />
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="createdby" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
+        <composite alias="MideasternArtworks" class="mideasternArtworks" local="id" foreign="gallery_id" cardinality="many" owner="local" />
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="mideasternJudges" table="sovereign_mideastern_judges" extends="xPDOSimpleObject">
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="fullname" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="email" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="country" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="position" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="organisation" dbtype="varchar" precision="250" phptype="string" null="true" default="" />
+        <field key="biography" dbtype="text" phptype="string" />
+        <field key="filename" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <aggregate alias="MideasternGallery" class="mideasternGalleries" local="gallery_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="mideasternVotes" table="sovereign_mideastern_votes" extends="xPDOSimpleObject">
+        <field key="artwork_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" />
+        <field key="gallery_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" />
+        <field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" />
+        <field key="value_judges" dbtype="decimal" precision="2,1" phptype="float" attributes="unsigned" null="false" />
+        <field key="value_public" dbtype="tinyint" precision="1" phptype="integer" attributes="unsigned" null="false" />
+        <field key="ip" dbtype="varchar" precision="255" phptype="string" null="true" />
+        <field key="date" dbtype="int" precision="11" attributes="unsigned" phptype="integer" null="false" />
+        <aggregate alias="MideasternArtwork" class="mideasternArtworks" local="artwork_id" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="User" class="modUser" local="user_id" foreign="id" cardinality="one" owner="foreign" />
+        <index alias="ip" name="ip" primary="false" unique="false" type="BTREE" >
+            <column key="ip" length="" collation="A" null="false" />
+        </index>
+        <index alias="artwork_id" name="artwork_id" primary="false" unique="false" type="BTREE" >
+            <column key="artwork_id" length="" collation="A" null="false" />
+        </index>
+        <index alias="user_id" name="user_id" primary="false" unique="false" type="BTREE" >
+            <column key="user_id" length="" collation="A" null="false" />
+        </index>
+    </object>
+
+    <object class="mideasternNominators" table="sovereign_mideastern_nominators" extends="xPDOSimpleObject">
+        <field key="fullname" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="filename" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="position" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="organisation" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="biography" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+        <field key="email" dbtype="varchar" precision="250" phptype="string" null="false" default="" />
+    </object>
+
+    
+
+    <!-- Subscriptions for newsletter -->
+    <object class="newsletterSubscriptions" table="sovereign_newsletter_subscriptions" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="200" phptype="string" null="true" />
+        <field key="email_address" dbtype="varchar" precision="250" phptype="string" null="true" />
+    </object>
+      
+</model>
