@@ -23,7 +23,7 @@ Sovereign.panel.Home = function(config) {
                     ,cls: 'main-wrapper'
                     ,preventRender: true
                 }]
-            },{
+            }/*,{
                 title: _('sovereign.tab_label_african')
                 ,tooltip: _('')
                 ,layout: 'form'
@@ -32,7 +32,7 @@ Sovereign.panel.Home = function(config) {
                     ,cls: 'main-wrapper'
                     ,preventRender: true
                 }]
-            }/*,{
+            },{
                 title: _('sovereign.tab_label_european')
                 ,tooltip: _('')
                 ,defaults: { autoHeight: true }

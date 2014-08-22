@@ -17,11 +17,11 @@ if (!is_dir($sources['model'])) { $modx->log(modX::LOG_LEVEL_ERROR,'Model direct
 if (!file_exists($sources['schema_file'])) { $modx->log(modX::LOG_LEVEL_ERROR,'Schema file not found!'); die(); }
 $generator->parseSchema($sources['schema_file'],$sources['model']);
 $modx->addPackage('sovereign', $sources['model']); // add package to make all models available
-$manager->createObjectContainer('africanGalleries'); // create the database tables
-$manager->createObjectContainer('africanArtworks');
-$manager->createObjectContainer('africanJudges');
-$manager->createObjectContainer('africanVotes');
-$manager->createObjectContainer('africanNominators');
+//$manager->createObjectContainer('africanGalleries'); // create the database tables
+//$manager->createObjectContainer('africanArtworks');
+//$manager->createObjectContainer('africanJudges');
+//$manager->createObjectContainer('africanVotes');
+//$manager->createObjectContainer('africanNominators');
 
 $manager->createObjectContainer('asianGalleries'); // create the database tables
 $manager->createObjectContainer('asianArtworks');
@@ -29,17 +29,17 @@ $manager->createObjectContainer('asianJudges');
 $manager->createObjectContainer('asianVotes');
 $manager->createObjectContainer('asianNominators');
 
-$manager->createObjectContainer('europeanGalleries'); // create the database tables
-$manager->createObjectContainer('europeanArtworks');
-$manager->createObjectContainer('europeanJudges');
-$manager->createObjectContainer('europeanVotes');
-$manager->createObjectContainer('europeanNominators');
+//$manager->createObjectContainer('europeanGalleries'); // create the database tables
+//$manager->createObjectContainer('europeanArtworks');
+//$manager->createObjectContainer('europeanJudges');
+//$manager->createObjectContainer('europeanVotes');
+//$manager->createObjectContainer('europeanNominators');
 
-$manager->createObjectContainer('mideasternGalleries'); // create the database tables
-$manager->createObjectContainer('mideasternArtworks');
-$manager->createObjectContainer('mideasternJudges');
-$manager->createObjectContainer('mideasternVotes');
-$manager->createObjectContainer('mideasternNominators');
+//$manager->createObjectContainer('mideasternGalleries'); // create the database tables
+//$manager->createObjectContainer('mideasternArtworks');
+//$manager->createObjectContainer('mideasternJudges');
+//$manager->createObjectContainer('mideasternVotes');
+//$manager->createObjectContainer('mideasternNominators');
 
 $manager->createObjectContainer('newsletterSubscriptions');
 $modx->log(modX::LOG_LEVEL_INFO, 'Done!');

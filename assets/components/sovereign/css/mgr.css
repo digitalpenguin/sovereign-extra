@@ -1,5 +1,5 @@
-.icon-reload { background:url("../css/img/reload.png") no-repeat scroll 5px 4px transparent !important; }
-.icon-add { background:url("../css/img/add.png") no-repeat scroll 5px 4px transparent !important; }
+.icon-reload { background:url("../css/img/reload.png") no-repeat scroll transparent !important; }
+.icon-add { background:url("../css/img/add.png") no-repeat scroll transparent !important; }
 .vertical-tabs-header {padding-top: 20px !important;}
 .x-grid3-hd-inner{ text-align:left; }
 #panelHome {margin-top:5px}

@@ -32,18 +32,18 @@ Sovereign.grid.GalleryAsianSubmissions = function(config) {
             header: _('sovereign.gallery_type')
             ,dataIndex: 'type'
             ,sortable: true
-            ,width:.06
+            ,width:.1
         },{
             header: _('sovereign.gallery_desc')
             ,dataIndex: 'description'
             ,sortable: true
-            ,width:.3
+            ,width:.2
         },{
             header: _('sovereign.gallery_artwork_total')
             ,align: 'center'
             ,dataIndex: 'artworktotal'
             ,sortable: false
-            ,width:.06
+            ,width:.07
         },{
             header: _('sovereign.active_gallery')
             ,align: 'center'

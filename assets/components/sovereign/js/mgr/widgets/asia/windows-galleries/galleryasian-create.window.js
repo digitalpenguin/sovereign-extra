@@ -7,7 +7,8 @@ Sovereign.window.CreateGalleryAsianSubmissions = function(config) {
     if (check) check.destroy();
 
     this.fieldsetNameAndDesc = {
-        xtype: 'fieldset'
+        xtype: 'container'
+        ,layout:'form'
         ,flex: 1
         ,border: false
         ,labelWidth: 60
@@ -31,38 +32,41 @@ Sovereign.window.CreateGalleryAsianSubmissions = function(config) {
             xtype: 'textarea'
             ,allowBlank: true
             ,fieldLabel: 'Description / Notes'
-            ,style: 'height:90px;'
+            ,height:100
             ,name: 'description'
         }]
     };
     this.fieldsetType = {
         xtype: 'fieldset'
         ,flex:1
+        ,style:'margin-top:-70px;'
         ,defaultType: 'radio'
         ,items: [{
             checked: true,
             fieldLabel: 'Type of Gallery',
-            style: 'margin:14px 0 0 10px;',
             boxLabel: 'Asian Art Prize',
             name: 'type',
             inputValue: 0
         },{
-            fieldLabel: '',
-            style: 'margin:0 0 0 10px;',
             boxLabel: 'Asian School Prize',
             name: 'type',
             inputValue: 1
+        },{
+            boxLabel: 'South East Asian Art Prize'
+            ,name: 'type'
+            ,inputValue:2
         }]
     };
     this.fieldsetImage = {
         xtype: 'fieldset'
         ,flex:1
+        ,border:false
+        ,height:70
         ,items: [{
             xtype: 'field'
             ,inputType: 'file'
             ,fieldLabel: 'Select a Cover Image'
             ,name: 'filename'
-            ,style: 'margin:16px 0 0 10px; width:200px;'
             ,allowBlank: true
         }]
     };
@@ -74,14 +78,16 @@ Sovereign.window.CreateGalleryAsianSubmissions = function(config) {
             align:'stretch'
         }
         ,items: [
-            this.fieldsetType
-            ,this.fieldsetImage
+            this.fieldsetImage
+            ,this.fieldsetType
+
         ]
     };
     this.mainFieldSetContainer = {
         xtype: 'container'
         ,layout: 'hbox'
-        ,height: 200
+        ,style:'padding:0 0 100px 0;'
+        ,height: 500
         ,layoutConfig: {
             align: 'stretch'
         }
@@ -92,13 +98,13 @@ Sovereign.window.CreateGalleryAsianSubmissions = function(config) {
     };
 
     this.ident = config.ident || 'sovcrgal'+Ext.id();
-    this.parent = Sovereign.config.asianGalleryUrl;//'assets/components/sovereign/galleries/asian/';
+    this.parent = Sovereign.config.asianGalleryUrl;
     Ext.applyIf(config,{
         title: _('sovereign.gallery_create')
         ,url: Sovereign.config.connectorUrl
         ,fileUpload: true
         ,modal: true
-        ,width:580
+        ,width:600
         ,baseParams: {
             action: 'mgr/asia/galleries/create'
             ,parent: this.parent

@@ -27,6 +27,7 @@ class GalleryAsianCreateProcessor extends modObjectCreateProcessor {
     }
 
     public function initialize() {
+
         $this->setUserId();
         $this->setCreateTime();
         // Get the filename string from the $_FILES array
