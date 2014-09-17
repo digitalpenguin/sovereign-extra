@@ -225,6 +225,10 @@ Sovereign.grid.AsianArtworkSubmissions = function(config) {
             ,iconCls: 'icon-add'
             ,handler: this.createAsianArtwork
             ,scope: this
+        },'-',{
+            text: 'Approve All'//_('sovereign.confirm_all_artworks')
+            ,handler: this.confirmAllAsianArtworks
+            ,scope: this
         },'->',{
             xtype: 'button'
             ,text: _('sovereign.export_csv')

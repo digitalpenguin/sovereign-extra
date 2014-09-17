@@ -2,7 +2,8 @@ Sovereign.window.UploadCoverImageGalleryAsian = function(config) {
     config = config || {};
 
     this.mainFieldSet = {
-        xtype: 'fieldset'
+        xtype: 'container'
+        ,layout: 'form'
         ,items: [{
             xtype: 'field'
             ,fieldLabel: 'Select New Cover Image'

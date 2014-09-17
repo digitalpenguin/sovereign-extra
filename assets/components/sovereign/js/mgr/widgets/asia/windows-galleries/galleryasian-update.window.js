@@ -7,7 +7,8 @@ Sovereign.window.UpdateGalleryAsianSubmissions = function(config) {
     if (check) check.destroy();
 
     this.fieldsetNameAndDesc = {
-        xtype: 'fieldset'
+        xtype: 'container'
+        ,layout:'form'
         ,flex: 1
         ,border: false
         ,labelWidth: 60
@@ -36,7 +37,8 @@ Sovereign.window.UpdateGalleryAsianSubmissions = function(config) {
         }]
     };
     this.fieldsetType = {
-        xtype: 'fieldset'
+        xtype: 'container'
+        ,layout:'form'
         ,flex:1
         ,defaultType: 'radio'
         ,items: [{
@@ -48,9 +50,15 @@ Sovereign.window.UpdateGalleryAsianSubmissions = function(config) {
         },{
             fieldLabel: '',
             style: 'margin:0 0 0 10px;',
-            boxLabel: 'Asian School Prize',
+            boxLabel: 'Hong Kong School Prize',
             name: 'type',
             inputValue: 1
+        },{
+            fieldLabel: '',
+            style: 'margin:0 0 0 10px;',
+            boxLabel: 'South East Asian Art Prize',
+            name: 'type',
+            inputValue: 2
         }]
     };
     this.typeAndImageContainer = {
@@ -107,78 +115,7 @@ Sovereign.window.UpdateGalleryAsianJudges = function(config) {
     var check = Ext.getCmp('sovereign-window-galleryasianjudges-update');
     if (check) check.destroy();
 
-    this.fieldsetNameAndDesc = {
-        xtype: 'fieldset'
-        ,flex: 1
-        ,border: false
-        ,labelWidth: 60
-        ,width:300
-        ,defaultType: 'field'
-        ,defaults: {
-            anchor: '-10'
-            ,allowBlank: false
-            ,listeners: {
-                afterrender: function(cmp) {
-                    cmp.getEl().set({
-                        "autocomplete": 'off'
-                    });
-                }
-            }
-        }
-        ,items: [{
-            fieldLabel: 'Gallery Name'
-            ,name: 'galleryname'
-        },{
-            xtype: 'textarea'
-            ,allowBlank: true
-            ,fieldLabel: 'Description / Notes'
-            ,style: 'height:90px;'
-            ,name: 'description'
-        }]
-    };
-    this.fieldsetType = {
-        xtype: 'fieldset'
-        ,flex:1
-        ,defaultType: 'radio'
-        ,items: [{
-            fieldLabel: 'Type of Gallery',
-            style: 'margin:14px 0 0 10px;',
-            boxLabel: 'Asian Art Prize',
-            name: 'type',
-            inputValue: 0
-        },{
-            fieldLabel: '',
-            style: 'margin:0 0 0 10px;',
-            boxLabel: 'Asian School Prize',
-            name: 'type',
-            inputValue: 1
-        }]
-    };
-    this.typeAndImageContainer = {
-        xtype:'container'
-        ,layout: 'vbox'
-        ,width:250
-        ,layoutConfig:{
-            align:'stretch'
-        }
-        ,items: [
-            this.fieldsetType
-        ]
-    };
-    this.mainFieldSetContainer = {
-        xtype: 'container'
-        ,layout: 'hbox'
-        ,height: 200
-        ,layoutConfig: {
-            align: 'stretch'
-        }
-        ,items: [
-            this.fieldsetNameAndDesc
-            ,this.typeAndImageContainer
-        ]
-    };
-
-    this.ident = config.ident || 'sovcrgal'+Ext.id();
+    this.ident = config.ident || 'sovupgalj'+Ext.id();
     this.parent = Sovereign.config.asianGalleryUrl;
     Ext.applyIf(config,{
         title: _('sovereign.gallery_update')
@@ -189,96 +126,22 @@ Sovereign.window.UpdateGalleryAsianJudges = function(config) {
         ,baseParams: {
             action: 'mgr/asia/galleries/update'
         }
-        ,fields: [{
-            xtype: 'hidden'
-            ,name: 'id'
-        },this.mainFieldSetContainer]
+
     });
     Sovereign.window.UpdateGalleryAsianJudges.superclass.constructor.call(this,config);
 };
-Ext.extend(Sovereign.window.UpdateGalleryAsianJudges,MODx.Window);
+Ext.extend(Sovereign.window.UpdateGalleryAsianJudges,Sovereign.window.UpdateGalleryAsianSubmissions);
 Ext.reg('sovereign-window-galleryasianjudges-update',Sovereign.window.UpdateGalleryAsianJudges);
 
 
 /**
- * Update gallery window for the gallery submissions grid.
+ * Update gallery window for the gallery public grid.
  */
 Sovereign.window.UpdateGalleryAsianPublic = function(config) {
     config = config || {};
     var check = Ext.getCmp('sovereign-window-galleryasianpublic-update');
     if (check) check.destroy();
 
-    this.fieldsetNameAndDesc = {
-        xtype: 'fieldset'
-        ,flex: 1
-        ,border: false
-        ,labelWidth: 60
-        ,width:300
-        ,defaultType: 'field'
-        ,defaults: {
-            anchor: '-10'
-            ,allowBlank: false
-            ,listeners: {
-                afterrender: function(cmp) {
-                    cmp.getEl().set({
-                        "autocomplete": 'off'
-                    });
-                }
-            }
-        }
-        ,items: [{
-            fieldLabel: 'Gallery Name'
-            ,name: 'galleryname'
-        },{
-            xtype: 'textarea'
-            ,allowBlank: true
-            ,fieldLabel: 'Description / Notes'
-            ,style: 'height:90px;'
-            ,name: 'description'
-        }]
-    };
-    this.fieldsetType = {
-        xtype: 'fieldset'
-        ,flex:1
-        ,defaultType: 'radio'
-        ,items: [{
-            fieldLabel: 'Type of Gallery',
-            style: 'margin:14px 0 0 10px;',
-            boxLabel: 'Asian Art Prize',
-            name: 'type',
-            inputValue: 0
-        },{
-            fieldLabel: '',
-            style: 'margin:0 0 0 10px;',
-            boxLabel: 'Asian School Prize',
-            name: 'type',
-            inputValue: 1
-        }]
-    };
-    this.typeAndImageContainer = {
-        xtype:'container'
-        ,layout: 'vbox'
-        ,width:250
-        ,layoutConfig:{
-            align:'stretch'
-        }
-        ,items: [
-            this.fieldsetType
-        ]
-    };
-    this.mainFieldSetContainer = {
-        xtype: 'container'
-        ,layout: 'hbox'
-        ,height: 200
-        ,layoutConfig: {
-            align: 'stretch'
-        }
-        ,items: [
-            this.fieldsetNameAndDesc
-            ,this.typeAndImageContainer
-        ]
-    };
-
     this.ident = config.ident || 'sovcrgal'+Ext.id();
     this.parent = Sovereign.config.asianGalleryUrl;
     Ext.applyIf(config,{
@@ -290,12 +153,8 @@ Sovereign.window.UpdateGalleryAsianPublic = function(config) {
         ,baseParams: {
             action: 'mgr/asia/galleries/update'
         }
-        ,fields: [{
-            xtype: 'hidden'
-            ,name: 'id'
-        },this.mainFieldSetContainer]
     });
     Sovereign.window.UpdateGalleryAsianPublic.superclass.constructor.call(this,config);
 };
-Ext.extend(Sovereign.window.UpdateGalleryAsianPublic,MODx.Window);
+Ext.extend(Sovereign.window.UpdateGalleryAsianPublic,Sovereign.window.UpdateGalleryAsianSubmissions);
 Ext.reg('sovereign-window-galleryasianpublic-update',Sovereign.window.UpdateGalleryAsianPublic);

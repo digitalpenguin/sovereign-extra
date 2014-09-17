@@ -124,6 +124,8 @@ $_lang['sovereign.artwork_winner'] = 'Winner';
 $_lang['sovereign.artwork_tag_winner'] = 'Declare Winner';
 $_lang['sovereign.artwork_untag_winner'] = 'Remove Winning Prize';
 $_lang['sovereign.artwork_untag_winner_confirm'] = 'Are you sure you wish to remove the winning status from this artwork?';
+$_lang['sovereign.confirm_all_artworks'] = 'Confirm All';
+
 
 /*
  * African Judges

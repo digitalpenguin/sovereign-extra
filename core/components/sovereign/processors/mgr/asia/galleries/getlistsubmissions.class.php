@@ -68,9 +68,11 @@ class GalleryAsianSubmissionsGetListProcessor extends modObjectGetListProcessor 
 
     private function getGalleryType($type) {
         if ($type == 0) {
-            return 'Art Prize';
+            return 'Asian Art Prize';
+        } else if ($type == 1) {
+            return 'HK School Prize';
         } else {
-            return 'School Prize';
+            return 'SEA Art Prize';
         }
     }
 
